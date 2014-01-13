@@ -62,7 +62,6 @@ public class ActivityAction extends ActionSupport {
 					file.createNewFile();
 					fos = new FileOutputStream(realPaht + "\\" + realName);
 					// 建立文件上传流
-					// 建立文件上传流
 					fis = new FileInputStream(getActivityFile());
 					byte[] buffer = new byte[1024];
 					int len = 0;
