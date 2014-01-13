@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts [
+    <!ELEMENT struts (package|include|bean|constant)*>
+
+    <!ELEMENT package (result-types?, interceptors?, default-interceptor-ref?, default-action-ref?, default-class-ref?, global-results?, global-exception-mappings?, action*)>
+    <!ATTLIST package
+        name CDATA #REQUIRED
+        extends CDATA #IMPLIED
+        namespace CDATA #IMPLIED
+        abstract CDATA #IMPLIED
+        externalReferenceResolver NMTOKEN #IMPLIED
+    >
+    
+    <!ELEMENT result-types (result-type+)>
+    
+    <!ELEMENT result-type (param*)>
+    <!ATTLIST result-type
+        name CDATA #REQUIRED
+        class CDATA #REQUIRED
+        default (true|false) "false"
+    >
+    
+    <!ELEMENT interceptors (interceptor|interceptor-stack)+>
+    
+    <!ELEMENT interceptor (param*)>
+    <!ATTLIST interceptor
+        name CDATA #REQUIRED
+        class CDATA #REQUIRED
+    >
+    
+    <!ELEMENT interceptor-stack (interceptor-ref*)>
+    <!ATTLIST interceptor-stack
+        name CDATA #REQUIRED
+    >
+    
+    <!ELEMENT interceptor-ref (param*)>
+    <!ATTLIST interceptor-ref
+        name CDATA #REQUIRED
+    >
+    
+    <!ELEMENT default-interceptor-ref (#PCDATA)>
+    <!ATTLIST default-interceptor-ref
+        name CDATA #REQUIRED
+    >
+    
+    <!ELEMENT default-action-ref (#PCDATA)>
+    <!ATTLIST default-action-ref
+        name CDATA #REQUIRED
+    >
+    
+    <!ELEMENT default-class-ref (#PCDATA)>
+    <!ATTLIST default-class-ref
+        class CDATA #REQUIRED
+    >
+    
+    <!ELEMENT global-results (result+)>
+    
+    <!ELEMENT global-exception-mappings (exception-mapping+)>
+    
+    <!ELEMENT action (param|result|interceptor-ref|exception-mapping)*>
+    <!ATTLIST action
+        name CDATA #REQUIRED
+        class CDATA #IMPLIED
+        method CDATA #IMPLIED
+        converter CDATA #IMPLIED
+    >
+    
+    <!ELEMENT param (#PCDATA)>
+    <!ATTLIST param
+        name CDATA #REQUIRED
+    >
+    
+    <!ELEMENT result (#PCDATA|param)*>
+    <!ATTLIST result
+        name CDATA #IMPLIED
+        type CDATA #IMPLIED
+    >
+    
+    <!ELEMENT exception-mapping (#PCDATA|param)*>
+    <!ATTLIST exception-mapping
+        name CDATA #IMPLIED
+        exception CDATA #REQUIRED
+        result CDATA #REQUIRED
+    >
+    
+    <!ELEMENT include (#PCDATA)>
+    <!ATTLIST include
+        file CDATA #REQUIRED
+    >
+    
+    <!ELEMENT bean (#PCDATA)>
+    <!ATTLIST bean
+        type CDATA #IMPLIED
+        name CDATA #IMPLIED
+        class CDATA #REQUIRED
+        scope CDATA #IMPLIED
+        static CDATA #IMPLIED
+        optional CDATA #IMPLIED
+    >
+    
+    <!ELEMENT constant (#PCDATA)>
+    <!ATTLIST constant
+        name CDATA #REQUIRED
+        value CDATA #REQUIRED    
+    >
+]>
+
+<struts>
+    <package name="osgi-lucene" namespace="/bl" extends="json-default">
+        <action name="index">
+            <result >/shop/shopIndex.jsp</result>
+        </action>
+        <!-- 商铺集合json数据 -->
+        <action name="shopJsonData" class="shopAction" method="shopJsonData">
+        <result type="json">
+              <param name="root">shopList</param>
+        </result>
+        </action>
+        <!-- 添加商铺 -->
+        <action name="addShop" class="shopAction" method="addShop">
+        <result type="json">
+              <param name="root">jsonValue</param>
+        </result>
+        </action>
+           <!-- 删除商铺 -->
+        <action name="deleteShop" class="shopAction" method="deleteShop">
+        <result type="json">
+              <param name="root">jsonValue</param>
+        </result>
+        </action>
+        <!-- 修改商铺 -->
+        <action name="updateShop" class="shopAction" method="updateShop">
+        <result type="json">
+              <param name="root">jsonValue</param>
+        </result>
+        </action>
+        <!-- 第一次搜索 
+        <action name="search" class="luceneAction" method="search">
+            <result name="bzgf" type="osgiBsl">/lucene/bzsearch.html</result>
+            <result name="kjcg" type="osgiBsl">/lucene/techsearch.html</result>
+            <result name="jncz" type="embeddedJsp">/lucene/jnczsearch.jsp</result>
+            <result name="tjsj" type="embeddedJsp">/lucene/tjsearch.jsp</result>
+            <result name="xjsj" type="embeddedJsp">/lucene/xjsearch.jsp</result>
+           <result name="lzhcg" type="embeddedJsp">/lucene/lzhjgsearch.jsp</result>
+            <result name="jxx" type="osgiBsl">/lucene/jxxsearch.html</result>
+            <result name="djjcxx" type="osgiBsl">/lucene/djjcxxsearch.html</result>
+            <result name="dyjcxx" type="osgiBsl">/lucene/dyjcxxsearch.html</result>
+            <result name="all" type="osgiBsl">/lucene/allsearch.html</result>
+        </action>
+          <action name="auto" class="luceneAction" method="auto"></action>
+                  第二次搜索 
+        <action name="secondSearch" class="luceneAction"  method="secondSearch">
+            <result type="embeddedJsp">/lucene/seconSearch.jsp</result>
+        </action>-->
+    </package>
+</struts>
